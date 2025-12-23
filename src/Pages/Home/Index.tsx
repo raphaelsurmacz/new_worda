@@ -3,6 +3,7 @@ import Footer from "../Nav/Footer";
 import Section01 from "./Section01";
 import Section02 from "./Section02";
 import Section03 from "./Section03";
+import Section04 from "./Section04";
 import Section05 from "./Section05";
 import Section07 from "./Section07";
 import AuroraBackground from "../../shared/AuroraBackground";
@@ -20,6 +21,7 @@ export default function IndexHome() {
         <Section01 />
         <Section02 />
         <Section03 />
+        <Section04 />
         <Section05 />
         <Section07 />
       </main>

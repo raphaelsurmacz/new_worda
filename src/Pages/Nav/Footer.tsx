@@ -31,15 +31,15 @@ export default function Footer({
     { label: "Home", href: "/" },
     { label: "Análise de Dados", href: "/analytics" },
     { label: "Integrações", href: "/integrations" },
-    { label: "Performance de Vendas", href: "/sales" },
+    { label: "Desenvolvimento", href: "/development" },
   ],
-  phone = "+55 41 984000180",
+  phone = "+55 41 98400-0180",
   email = "fernando@worda.com.br",
   address = "Curitiba, PR - Brasil",
   onContact,
   year = 2025,
   socialLinks = {
-    linkedin: "https://linkedin.com/company/worda",
+    linkedin: "https://www.linkedin.com/company/worda/",
     github: "https://github.com/worda",
     twitter: "https://twitter.com/worda",
     whatsapp: "https://wa.me/5541984000180",
@@ -47,16 +47,16 @@ export default function Footer({
 }: FooterProps) {
   const quickLinks = [
     { label: "Sobre Nós", href: "/about" },
-    { label: "Cases", href: "/cases" },
-    { label: "Blog", href: "/blog" },
-    { label: "Carreiras", href: "/careers" },
+    { label: "Portfólio", href: "/#portfolio" },
+    { label: "Fale Conosco", href: "/#contact" },
+    { label: "Termos de Uso", href: "/terms" },
   ];
 
   const services = [
-    { label: "Consultoria em Dados", href: "/data-consulting" },
-    { label: "Desenvolvimento Web", href: "/web-development" },
-    { label: "Integração de APIs", href: "/api-integration" },
-    { label: "Otimização E-commerce", href: "/ecommerce-optimization" },
+    { label: "Análise de Dados", href: "/analytics" },
+    { label: "Desenvolvimento de Sistemas", href: "/development" },
+    { label: "Integração de APIs", href: "/integrations" },
+    { label: "HubSync", href: "/#hubsync" },
   ];
 
   const containerVariants = {
@@ -91,7 +91,7 @@ export default function Footer({
                   loading="lazy"
                 />
               </div>
-             
+
             </div>
 
             <p className="text-slate-400 leading-7 mb-8 max-w-md">
@@ -244,7 +244,7 @@ export default function Footer({
               ))}
             </ul>
 
-           
+
           </motion.div>
         </motion.div>
 

@@ -1,11 +1,11 @@
 // components/IntegrationsSectionDark.tsx
-import img1 from "../../Integrations/MercadoLivre/Assets/1.png";
-import img2 from "../../Integrations/MercadoLivre/Assets/2.png";
-import img3 from "../../Integrations/MercadoLivre/Assets/3.png";
-import img4 from "../../Integrations/MercadoLivre/Assets/4.png";
+import img1 from "./Assets/1.png";
+import img2 from "./Assets/2.png";
+import img3 from "./Assets/3.png";
+import img4 from "./Assets/4.png";
 
 export default function IntegrationsSectionDark() {
-  const images = [img2, img3, img4];
+  const images = [img2, img3, img4, img1];
 
   return (
     <section className="relative w-full overflow-hidden py-20 text-slate-100">
@@ -22,43 +22,27 @@ export default function IntegrationsSectionDark() {
           </p>
         </header>
 
-        {/* linha 1 */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {/* Grid Único de Logos */}
+        <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {images.map((src, i) => (
             <div
               key={i}
-              className="rounded-2xl bg-[#0b1120]/40 backdrop-blur-md hover:bg-[#0b1120]/60 transition-all duration-300 flex items-center justify-center p-10"
+              className="group relative rounded-2xl bg-[#0b1120]/40 backdrop-blur-md hover:bg-[#0b1120]/60 transition-all duration-300 flex items-center justify-center p-6 aspect-[3/2]"
             >
               <img
                 src={src}
                 alt={`ERP Logo ${i + 1}`}
-                className="h-16 w-auto opacity-90"
+                className="max-h-20 w-auto opacity-80 group-hover:opacity-100 transition-opacity object-contain"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).style.display = "none";
                   const ph = document.createElement("div");
                   ph.className =
-                    "h-16 w-16 rounded-xl bg-[#0b1120]/60 border border-slate-700/30";
+                    "h-20 w-20 rounded-lg bg-slate-800/50 border border-slate-700/30";
                   e.currentTarget.parentElement?.appendChild(ph);
                 }}
               />
             </div>
           ))}
-        </div>
-
-        {/* linha 2 */}
-        <div className="mt-8 rounded-2xl bg-[#0b1120]/40 backdrop-blur-md flex items-center justify-center p-14 hover:bg-[#0b1120]/60 transition-all">
-          <img
-            src={img1}
-            alt="ERP Logo Principal"
-            className="h-16 w-auto opacity-90"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).style.display = "none";
-              const ph = document.createElement("div");
-              ph.className =
-                "h-16 w-16 rounded-xl bg-[#0b1120]/60 border border-slate-700/30";
-              e.currentTarget.parentElement?.appendChild(ph);
-            }}
-          />
         </div>
 
         {/* banner informativo */}

@@ -1,15 +1,27 @@
 import { motion } from "framer-motion";
 
+// Logos
+import bariguiLogo from "../../assets/clients/barigui.png";
+import tonielloLogo from "../../assets/clients/toniello.png";
+import hyundaiLogo from "../../assets/clients/hyundai.png";
+import strasbourgLogo from "../../assets/clients/strasbourg.png";
+import vipcarLogo from "../../assets/clients/vipcar.png";
+import mallonLogo from "../../assets/clients/mallon.png";
+// Grupo Servopa didn't have a distinct logo file found, might be text or shared. Using text fallback for now if needed or re-use others if appropriate. 
+// Actually I will treat Servopa as text based since I didn't get a specific servopa.png in my download list (I got barigui twice in the thought trace possibly). 
+// Wait, I see "toniello", "hyundai", "strasbourg", "vipcar", "mallon", "barigui". 
+// I will list them all.
+
 export default function Section02() {
   const companies = [
-    { name: "TechCorp" },
-    { name: "InnovateX" },
-    { name: "Nexus Labs" },
-    { name: "Quantum" },
-    { name: "SynthWave" },
-    { name: "Aether" },
-    { name: "Nova" },
-    { name: "Vertex" },
+    { name: "Grupo Barigui", logo: bariguiLogo },
+    { name: "Toniello", logo: tonielloLogo },
+    { name: "Hyundai", logo: hyundaiLogo },
+    { name: "Strasbourg", logo: strasbourgLogo },
+    { name: "VipCar", logo: vipcarLogo },
+    { name: "Mallon", logo: mallonLogo },
+    { name: "Grupo Servopa", logo: null }, // Text fallback
+    { name: "Volkswagen", logo: null }, // Text fallback
   ];
 
   const stats = [
@@ -20,7 +32,7 @@ export default function Section02() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
   };
 
   const itemVariants = {
@@ -73,13 +85,18 @@ export default function Section02() {
                 whileHover={{ scale: 1.05, y: -4, transition: { duration: 0.1 } }}
                 className="group relative"
               >
-                <div className="relative h-24 w-44 rounded-2xl bg-[#0b1120]/60 backdrop-blur-sm will-change-transform">
-                  <div className="absolute inset-0 rounded-2xl bg-cyan-300/0 group-hover:bg-cyan-300/5 transition-all duration-300" />
-                  <div className="relative h-full w-full rounded-[1.4rem] flex items-center justify-center backdrop-blur-sm">
-                    <span className="text-slate-200 font-semibold text-sm tracking-wide">
+                <div className="relative h-20 w-40 rounded-xl bg-[#0b1120]/60 backdrop-blur-sm will-change-transform flex items-center justify-center border border-slate-800/30 p-2">
+                  {company.logo ? (
+                    <img
+                      src={company.logo}
+                      alt={company.name}
+                      className="max-h-full max-w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
+                    />
+                  ) : (
+                    <span className="font-semibold text-slate-400 group-hover:text-cyan-200 transition-colors">
                       {company.name}
                     </span>
-                  </div>
+                  )}
                 </div>
 
                 {/* Tooltip */}

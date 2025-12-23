@@ -5,12 +5,12 @@ import { FiMessageSquare, FiArrowRight } from "react-icons/fi";
 type Suggestion = { id: string; text: string };
 
 const defaultSuggestions: Suggestion[] = [
-  { id: "1", text: "Como posso integrar meu sistema com marketplaces?" },
-  { id: "2", text: "Quais são as melhores práticas para análise de dados?" },
-  { id: "3", text: "Como otimizar a performance do meu e-commerce?" },
-  { id: "4", text: "Quais tecnologias vocês recomendam para startups?" },
-  { id: "5", text: "Como funciona o processo de desenvolvimento?" },
-  { id: "6", text: "Quais os prazos médios para projetos similares?" },
+  { id: "1", text: "Como funciona o processo de trabalho da Worda?" },
+  { id: "2", text: "Como vocês fazem o planejamento personalizado?" },
+  { id: "3", text: "Quais são as etapas de desenvolvimento e implementação?" },
+  { id: "4", text: "Como funcionam o entendimento do negócio e o acompanhamento?" },
+  { id: "5", text: "Quais resultados visíveis e mensuráveis posso esperar?" },
+  { id: "6", text: "Quais tecnologias utilizam para criar sistemas sob medida?" },
 ];
 
 /** 🔐 Em produção, mova para o backend/proxy */
@@ -270,7 +270,9 @@ export default function Section06({
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
-              href="#contact"
+              href="https://wa.me/5541984000180?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20um%20especialista."
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-xl bg-[#0b1120]/40 backdrop-blur-md px-6 py-3 font-medium text-slate-100 hover:bg-[#0b1120]/60 hover:text-cyan-200 transition-colors"
             >
               Falar com Especialista

@@ -1,5 +1,15 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+// Fotos
+import fernandoImg from "../../assets/team/fernando.jpg";
+import viniciusImg from "../../assets/team/vinicius.jpg";
+import joaoImg from "../../assets/team/joao.jpg";
+import miguelImg from "../../assets/team/miguel.png";
+import carlosImg from "../../assets/team/carlos.jpg";
+import marcosImg from "../../assets/team/marcos.jpg";
+import pabloImg from "../../assets/team/pablo.jpg";
 
 /* ========== Tipos ========== */
 type TeamMember = {
@@ -10,21 +20,38 @@ type TeamMember = {
 };
 
 const teamMock: TeamMember[] = [
-  { name: "Carlos Junior", role: "CTO & Fundador", bio: "Especialista em arquitetura de sistemas escaláveis com 10+ anos de experiência. Lidera nossa visão tecnológica e estratégia de inovação." },
-  { name: "Ana Data Sense", role: "Head de Dados & IA", bio: "PhD em Ciência de Dados com foco em machine learning aplicado. Transforma dados complexos em insights acionáveis para negócios." },
-  { name: "Carlos Cloud", role: "Arquiteto de Soluções", bio: "Especialista em cloud computing e DevOps. Desenha infraestruturas robustas e otimizadas para alta performance e segurança." },
-  { name: "Marina UX", role: "Líder de Product Design", bio: "Designer focada em UX e interfaces intuitivas. Conecta tecnologia às necessidades humanas de forma elegante." },
+  { name: "Fernando Barczak", role: "CEO", bio: "Co-fundador e diretor comercial.", photo: fernandoImg },
+  { name: "Vinicius Lamb", role: "Engenheiro de dados", bio: "Desenvolvedor back-end.", photo: viniciusImg },
+  { name: "João Vitor de Souza", role: "Engenheiro de dados", bio: "Desenvolvedor back-end e especialista em cyber security.", photo: joaoImg },
+  { name: "Miguel Zanchesttin", role: "Cientista de dados", bio: "Especialista em inteligência artificial.", photo: miguelImg },
+  { name: "Carlos Junior", role: "Analista de dados BI", bio: "Analista de dados BI.", photo: carlosImg },
+  { name: "Marcos Alexandre", role: "CTO", bio: "Co-fundador e diretor de tecnologia.", photo: marcosImg },
+  { name: "Pablo Lincoln", role: "Sucesso do cliente", bio: "Especialista em suporte ao cliente.", photo: pabloImg },
 ];
 
 export default function Section05({ items = teamMock }: { items?: TeamMember[] }) {
   const [page, setPage] = useState(0);
   const perPage = 3;
 
+  // Calculate total pages for dot indicators (optional, but good for context)
   const pageCount = Math.ceil(items.length / perPage);
+
+  // Logic to always show 3 items, wrapping around if needed
   const current = useMemo(() => {
-    const start = page * perPage;
-    return items.slice(start, start + perPage);
+    const startIndex = page * perPage;
+    return Array.from({ length: perPage }).map((_, i) => {
+      const index = (startIndex + i) % items.length;
+      return items[index];
+    });
   }, [items, page]);
+
+  const nextSlide = () => {
+    setPage((prev) => (prev + 1) % pageCount);
+  };
+
+  const prevSlide = () => {
+    setPage((prev) => (prev - 1 + pageCount) % pageCount);
+  };
 
   const container = {
     hidden: { opacity: 0 },
@@ -35,9 +62,12 @@ export default function Section05({ items = teamMock }: { items?: TeamMember[] }
     visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: "easeOut" } },
   };
 
+  /* Safe reset if items length changes (e.g. filtering) */
+  // useEffect(() => setPage(0), [items.length]); // Optional protection
+
   return (
     <section className="w-full py-20 text-slate-100 relative overflow-hidden">
-      <div className="relative mx-auto max-w-6xl px-6">
+      <div className="relative mx-auto max-w-7xl px-6">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -60,78 +90,95 @@ export default function Section05({ items = teamMock }: { items?: TeamMember[] }
           </motion.p>
         </motion.div>
 
-        {/* Grid de membros (3 por página) */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-40px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
-          {current.map((m, i) => (
-            <motion.article
-              key={`${m.name}-${i}`}
-              variants={card}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="rounded-2xl bg-[#0b1120]/60 backdrop-blur-sm p-6 will-change-transform"
-            >
-              {/* Avatar menor (foto ou iniciais) */}
-              <div className="flex items-center gap-3">
-                {m.photo ? (
-                  <img
-                    src={m.photo}
-                    alt={m.name}
-                    className="h-10 w-10 rounded-full object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="h-10 w-10 rounded-full bg-[#0b1120]/70 backdrop-blur-sm flex items-center justify-center">
-                    <span className="text-sm font-bold text-cyan-200">
-                      {m.name.split(" ").map(s => s[0]).slice(0, 2).join("")}
-                    </span>
-                  </div>
-                )}
-                <div>
-                  <h3 className="text-base font-semibold text-slate-100">{m.name}</h3>
-                  {m.role && <p className="text-xs text-slate-400">{m.role}</p>}
-                </div>
-              </div>
-
-              <p className="mt-4 text-sm leading-7 text-slate-400">
-                {m.bio}
-              </p>
-            </motion.article>
-          ))}
-        </motion.div>
-
-        {/* Paginação simples (sem ícones) */}
-        <div className="mt-8 flex items-center justify-center gap-3">
+        {/* Carousel Container */}
+        <div className="flex items-center gap-4 md:gap-8">
+          {/* Prev Button */}
           <button
-            onClick={() => setPage(p => Math.max(0, p - 1))}
-            disabled={page === 0}
-            className="px-3 py-1.5 rounded-lg bg-[#0b1120]/60 backdrop-blur-sm text-sm text-slate-200 disabled:opacity-40"
+            onClick={prevSlide}
+            className="hidden md:flex flex-none h-12 w-12 items-center justify-center rounded-full bg-[#0b1120]/60 backdrop-blur-sm border border-slate-700/50 hover:bg-cyan-500/10 hover:border-cyan-500/50 transition-all text-slate-300 hover:text-cyan-200 z-10"
+            aria-label="Anterior"
           >
-            Anterior
+            <ChevronLeft size={24} />
+          </button>
+
+          {/* Grid de membros */}
+          <motion.div
+            key={page}
+            variants={container}
+            initial="hidden"
+            animate="visible"
+            className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6 md:min-h-[300px] content-start"
+          >
+            {current.map((m, i) => (
+              <motion.article
+                key={`${m.name} -${i} `}
+                variants={card}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="rounded-2xl bg-[#0b1120]/60 backdrop-blur-sm p-6 will-change-transform h-full border border-transparent hover:border-slate-700/50 transition-colors"
+              >
+                {/* Avatar */}
+                <div className="flex items-center gap-3">
+                  {m.photo ? (
+                    <img
+                      src={m.photo}
+                      alt={m.name}
+                      className="h-10 w-10 rounded-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="h-10 w-10 rounded-full bg-[#0b1120]/70 backdrop-blur-sm flex items-center justify-center">
+                      <span className="text-sm font-bold text-cyan-200">
+                        {m.name.split(" ").map(s => s[0]).slice(0, 2).join("")}
+                      </span>
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="text-base font-semibold text-slate-100">{m.name}</h3>
+                    {m.role && <p className="text-xs text-slate-400">{m.role}</p>}
+                  </div>
+                </div>
+
+                <p className="mt-4 text-sm leading-7 text-slate-400">
+                  {m.bio}
+                </p>
+              </motion.article>
+            ))}
+          </motion.div>
+
+          {/* Next Button */}
+          <button
+            onClick={nextSlide}
+            className="hidden md:flex flex-none h-12 w-12 items-center justify-center rounded-full bg-[#0b1120]/60 backdrop-blur-sm border border-slate-700/50 hover:bg-cyan-500/10 hover:border-cyan-500/50 transition-all text-slate-300 hover:text-cyan-200 z-10"
+            aria-label="Próximo"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        {/* Mobile Nav (Buttons below on mobile) */}
+        <div className="flex md:hidden items-center justify-center gap-6 mt-8">
+          <button
+            onClick={prevSlide}
+            className="h-12 w-12 flex items-center justify-center rounded-full bg-[#0b1120]/60 backdrop-blur-sm border border-slate-700/50 text-slate-300 active:scale-95 transition-transform"
+          >
+            <ChevronLeft size={24} />
           </button>
           <div className="flex gap-1.5">
             {Array.from({ length: pageCount }).map((_, i) => (
-              <button
+              <div
                 key={i}
-                onClick={() => setPage(i)}
-                aria-label={`Ir para página ${i + 1}`}
-                className={`h-2.5 w-6 rounded-full transition-all ${i === page ? "bg-cyan-300/60" : "bg-slate-600/60 hover:bg-slate-500/60"
-                  }`}
+                className={`h - 2 w - 2 rounded - full transition - colors ${i === page ? "bg-cyan-300" : "bg-slate-700"} `}
               />
             ))}
           </div>
           <button
-            onClick={() => setPage(p => Math.min(pageCount - 1, p + 1))}
-            disabled={page === pageCount - 1}
-            className="px-3 py-1.5 rounded-lg bg-[#0b1120]/60 backdrop-blur-sm text-sm text-slate-200 disabled:opacity-40"
+            onClick={nextSlide}
+            className="h-12 w-12 flex items-center justify-center rounded-full bg-[#0b1120]/60 backdrop-blur-sm border border-slate-700/50 text-slate-300 active:scale-95 transition-transform"
           >
-            Próximo
+            <ChevronRight size={24} />
           </button>
         </div>
+
       </div>
     </section>
   );

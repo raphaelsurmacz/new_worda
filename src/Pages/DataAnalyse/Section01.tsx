@@ -101,20 +101,20 @@ const DEFAULT_PLANS: Plan[] = [
 ];
 
 const DEFAULT_STEPS: Step[] = [
-  { id: 1, title: "Discovery & Strategy", desc: "Deep dive into your business objectives and define clear success metrics for data-driven outcomes.", icon: <Target className="h-6 w-6" /> },
-  { id: 2, title: "Data Collection",     desc: "Seamlessly integrate multiple data sources with automated pipelines and quality validation.",   icon: <Database className="h-6 w-6" /> },
-  { id: 3, title: "Data Processing",     desc: "Clean, transform, and enrich raw data into structured formats ready for advanced analysis.",  icon: <Settings className="h-6 w-6" /> },
-  { id: 4, title: "Advanced Analytics",  desc: "Apply machine learning and statistical models to uncover hidden patterns and opportunities.", icon: <LineChart className="h-6 w-6" /> },
-  { id: 5, title: "Visualization",       desc: "Create interactive dashboards and reports that tell compelling data stories for stakeholders.", icon: <BarChart3 className="h-6 w-6" /> },
-  { id: 6, title: "Implementation",      desc: "Deploy solutions into your workflow with comprehensive training and change management.",      icon: <Rocket className="h-6 w-6" /> },
-  { id: 7, title: "Optimization",        desc: "Continuously monitor performance and refine strategies based on real-world results.",         icon: <TrendingUp className="h-6 w-6" /> },
+  { id: 1, title: "Definição do Objetivo", desc: "Mergulhamos nos seus objetivos de negócio para definir métricas claras de sucesso.", icon: <Target className="h-6 w-6" /> },
+  { id: 2, title: "Coleta de Dados", desc: "Integramos múltiplas fontes de dados (internas e externas) com pipelines automatizados.", icon: <Database className="h-6 w-6" /> },
+  { id: 3, title: "Preparação dos Dados", desc: "Limpeza, estruturação e enriquecimento dos dados brutos para análise avançada.", icon: <Settings className="h-6 w-6" /> },
+  { id: 4, title: "Análise Exploratória", desc: "Identificação de padrões ocultos, tendências e correlações através de exploração profunda.", icon: <LineChart className="h-6 w-6" /> },
+  { id: 5, title: "Modelagem e IA", desc: "Aplicação de algoritmos e machine learning para prever cenários e otimizar resultados.", icon: <BarChart3 className="h-6 w-6" /> },
+  { id: 6, title: "Visualização", desc: "Criação de dashboards interativos e relatórios que contam histórias claras para decisão.", icon: <Rocket className="h-6 w-6" /> },
+  { id: 7, title: "Otimização Contínua", desc: "Monitoramento constante da performance e refinamento de estratégias baseado em dados.", icon: <TrendingUp className="h-6 w-6" /> },
 ];
 
 /* =========================================================
  * Steps (glass neutro)
  * =======================================================*/
 function StepsGrid({
-  title = "Our Data-Driven Process",
+  title = "Nossa Metodologia Data-Driven",
   steps = DEFAULT_STEPS,
 }: {
   title?: string;
@@ -144,9 +144,9 @@ function StepsGrid({
             transition={{ duration: 0.45, delay: 0.08 }}
             className="mt-6 text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
           >
-            A proven methodology to turn data into{" "}
+            Uma metodologia comprovada para transformar dados em{" "}
             <span className="bg-gradient-to-r from-cyan-200 to-blue-300 bg-clip-text text-transparent font-medium">
-              actionable intelligence
+              inteligência acionável
             </span>
           </motion.p>
         </motion.div>
@@ -196,12 +196,12 @@ function StepsGrid({
  * PricingPlans (hero neutro + Steps abaixo)
  * =======================================================*/
 export default function PricingPlans({
-  badgeText = "Free to try. No credit card required",
-  title = "Plans That Scale",
-  subtitle = "with Your Business",
-  note = "Start free, upgrade as you grow. All plans include core features.",
+  badgeText = "Comece agora. Sem cartão de crédito.",
+  title = "Transforme Dados em",
+  subtitle = "Decisões Inteligentes",
+  note = "Metodologia exclusiva para alavancar seus resultados com precisão e agilidade.",
   plans = DEFAULT_PLANS, // mantido por compat (não renderizado aqui)
-  stepsTitle = "Our Data-Driven Process",
+  stepsTitle = "Nossa Metodologia Data-Driven",
   steps = DEFAULT_STEPS,
 }: PricingPlansProps) {
   return (

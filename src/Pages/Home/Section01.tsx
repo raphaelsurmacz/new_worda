@@ -93,15 +93,14 @@ export default function LandingHero() {
 
           <h1 className="font-extrabold leading-tight tracking-tight text-4xl sm:text-5xl md:text-7xl lg:text-8xl relative">
             <span className="bg-gradient-to-r from-slate-100 via-slate-200 to-slate-300 bg-clip-text text-transparent">
-              Construindo
+              Worda
             </span>
             <br />
-            <span className="bg-gradient-to-r from-slate-200 via-blue-200 to-cyan-200 bg-clip-text text-transparent">
-              Soluções
+            <span className="bg-gradient-to-r from-slate-200 via-blue-200 to-cyan-200 bg-clip-text text-transparent text-2xl sm:text-4xl md:text-6xl lg:text-7xl block mt-2">
+              Web Oriented Retail
             </span>
-            <br />
-            <span className="bg-gradient-to-r from-cyan-200 via-blue-300 to-indigo-300 bg-clip-text text-transparent">
-              Escaláveis
+            <span className="bg-gradient-to-r from-cyan-200 via-blue-300 to-indigo-300 bg-clip-text text-transparent text-2xl sm:text-4xl md:text-6xl lg:text-7xl block">
+              & Data Analytics
             </span>
           </h1>
         </motion.div>
@@ -113,10 +112,7 @@ export default function LandingHero() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-8 max-w-3xl text-center text-xl leading-8 text-slate-300 font-light"
         >
-          Transformamos ideias em realidade digital com tecnologia de ponta e
-          <span className="bg-gradient-to-r from-cyan-200 to-blue-300 bg-clip-text text-transparent font-medium">
-            {" "}inovação contínua
-          </span>
+          Soluções inteligentes para análise de dados, vendas online e sistemas sob medida para alavancar seu negócio.
         </motion.p>
 
         {/* CTAs */}
@@ -127,7 +123,9 @@ export default function LandingHero() {
           className="mt-10 flex flex-col sm:flex-row gap-4"
         >
           <a
-            href="#contact"
+            href="https://wa.me/5541984000180?text=Ol%C3%A1%2C%20quero%20come%C3%A7ar%20um%20projeto%20com%20a%20Worda."
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative inline-flex items-center justify-center rounded-xl border border-slate-600/60 bg-slate-800/40 px-8 py-4 font-semibold text-slate-100 shadow-md shadow-black/30 transition-all duration-300 hover:bg-slate-700/40 hover:scale-[1.02]"
           >
             <span className="relative">Começar Projeto</span>

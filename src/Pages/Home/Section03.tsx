@@ -61,7 +61,7 @@ export default function Section03() {
   };
 
   return (
-    <section className="w-full py-28 text-slate-100 relative overflow-hidden">
+    <section id="services" className="w-full py-28 text-slate-100 relative overflow-hidden">
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Heading */}
         <motion.div
@@ -147,7 +147,9 @@ export default function Section03() {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="#contact"
+              href="https://wa.me/5541984000180?text=Ol%C3%A1%2C%20gostaria%20de%20come%C3%A7ar%20um%20projeto."
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-xl bg-[#0b1120]/40 backdrop-blur-md px-8 py-4 font-semibold text-slate-100 transition-all duration-300 hover:bg-[#0b1120]/60 hover:text-cyan-200"
             >
               Começar Projeto

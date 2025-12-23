@@ -52,11 +52,10 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-[#0a0f1a]/90 backdrop-blur-md border-b border-slate-800/50 shadow-sm"
           : "bg-transparent border-b border-slate-800/30"
-      }`}
+        }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
@@ -143,7 +142,9 @@ export default function Navbar() {
           <motion.a
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            href="#contact"
+            href="https://wa.me/5541984000180?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20Worda."
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-lg border border-slate-700/70 bg-transparent px-5 py-2.5 text-sm font-medium text-slate-300 hover:text-slate-100 hover:bg-slate-800/40"
           >
             Contact
@@ -248,7 +249,9 @@ export default function Navbar() {
                 <motion.a
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
-                  href="#contact"
+                  href="https://wa.me/5541984000180?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20Worda."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full rounded-lg border border-slate-700/70 bg-transparent px-5 py-3 text-center text-sm font-medium text-slate-300 hover:text-slate-100 hover:bg-slate-800/40"
                   onClick={() => setOpen(false)}
                 >
