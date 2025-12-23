@@ -21,10 +21,11 @@ interface FooterProps {
     twitter?: string;
     whatsapp?: string;
   };
+  variant?: "default" | "light"; // "default" = dark bg/white text, "light" = light bg/dark text
 }
 
 export default function Footer({
-  logoSrc, // se vier, usa; senão, usa import 'logo'
+  logoSrc,
   brand = "WORDA",
   description = "Web Oriented Retail & Data Analytics",
   navLinks = [
@@ -44,7 +45,17 @@ export default function Footer({
     twitter: "https://twitter.com/worda",
     whatsapp: "https://wa.me/5541984000180",
   },
+  variant = "default",
 }: FooterProps) {
+  const isLight = variant === "light";
+
+  // Colors based on variant
+  const textColor = isLight ? "text-slate-900" : "text-slate-100";
+  const subTextColor = isLight ? "text-slate-600" : "text-slate-400";
+  const iconBg = isLight ? "bg-slate-200" : "bg-[#0b1120]/40 backdrop-blur-md";
+  const iconColor = isLight ? "text-slate-700" : "text-slate-300"; // icons inside
+  const borderColor = isLight ? "border-slate-300" : "border-slate-800/50";
+
   const quickLinks = [
     { label: "Sobre Nós", href: "/about" },
     { label: "Portfólio", href: "/#portfolio" },
@@ -70,7 +81,7 @@ export default function Footer({
   };
 
   return (
-    <footer className="relative w-full text-slate-100 overflow-hidden">
+    <footer className={`relative w-full ${textColor} overflow-hidden`}>
       {/* Main */}
       <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-16">
         <motion.div
@@ -87,14 +98,14 @@ export default function Footer({
                 <img
                   src={logoSrc ?? (logo as string)}
                   alt={brand}
-                  className="h-10 w-auto object-contain"
+                  className={`h-10 w-auto object-contain ${isLight ? "brightness-0" : ""}`}
                   loading="lazy"
                 />
               </div>
 
             </div>
 
-            <p className="text-slate-400 leading-7 mb-8 max-w-md">
+            <p className={`${subTextColor} leading-7 mb-8 max-w-md`}>
               Transformamos dados em insights e criamos soluções web escaláveis —
               tudo coerente com o seu momento de negócio.
             </p>
@@ -104,9 +115,9 @@ export default function Footer({
               <motion.a
                 whileHover={{ x: 4 }}
                 href={`tel:${phone}`}
-                className="flex items-center gap-3 text-slate-300 hover:text-cyan-200 transition-colors"
+                className={`flex items-center gap-3 ${iconColor} hover:text-cyan-500 transition-colors`}
               >
-                <div className="h-10 w-10 rounded-xl bg-[#0b1120]/40 backdrop-blur-md flex items-center justify-center">
+                <div className={`h-10 w-10 rounded-xl ${iconBg} flex items-center justify-center`}>
                   <Phone className="h-4 w-4" />
                 </div>
                 <span className="font-medium">{phone}</span>
@@ -115,16 +126,16 @@ export default function Footer({
               <motion.a
                 whileHover={{ x: 4 }}
                 href={`mailto:${email}`}
-                className="flex items-center gap-3 text-slate-300 hover:text-cyan-200 transition-colors"
+                className={`flex items-center gap-3 ${iconColor} hover:text-cyan-500 transition-colors`}
               >
-                <div className="h-10 w-10 rounded-xl bg-[#0b1120]/40 backdrop-blur-md flex items-center justify-center">
+                <div className={`h-10 w-10 rounded-xl ${iconBg} flex items-center justify-center`}>
                   <Mail className="h-4 w-4" />
                 </div>
                 <span className="font-medium">{email}</span>
               </motion.a>
 
-              <div className="flex items-center gap-3 text-slate-400">
-                <div className="h-10 w-10 rounded-xl bg-[#0b1120]/40 backdrop-blur-md flex items-center justify-center">
+              <div className={`flex items-center gap-3 ${subTextColor}`}>
+                <div className={`h-10 w-10 rounded-xl ${iconBg} flex items-center justify-center ${iconColor}`}>
                   <MapPin className="h-4 w-4" />
                 </div>
                 <span className="font-medium">{address}</span>
@@ -138,7 +149,7 @@ export default function Footer({
                   whileHover={{ scale: 1.06, y: -2 }}
                   whileTap={{ scale: 0.96 }}
                   href={socialLinks.linkedin}
-                  className="h-10 w-10 rounded-xl bg-[#0b1120]/40 backdrop-blur-md flex items-center justify-center text-slate-400 hover:text-cyan-200 transition-colors"
+                  className={`h-10 w-10 rounded-xl ${iconBg} flex items-center justify-center ${iconColor} hover:text-cyan-500 transition-colors`}
                 >
                   <Linkedin className="h-4 w-4" />
                 </motion.a>
@@ -148,7 +159,7 @@ export default function Footer({
                   whileHover={{ scale: 1.06, y: -2 }}
                   whileTap={{ scale: 0.96 }}
                   href={socialLinks.github}
-                  className="h-10 w-10 rounded-xl bg-[#0b1120]/40 backdrop-blur-md flex items-center justify-center text-slate-400 hover:text-cyan-200 transition-colors"
+                  className={`h-10 w-10 rounded-xl ${iconBg} flex items-center justify-center ${iconColor} hover:text-cyan-500 transition-colors`}
                 >
                   <Github className="h-4 w-4" />
                 </motion.a>
@@ -158,7 +169,7 @@ export default function Footer({
                   whileHover={{ scale: 1.06, y: -2 }}
                   whileTap={{ scale: 0.96 }}
                   href={socialLinks.twitter}
-                  className="h-10 w-10 rounded-xl bg-[#0b1120]/40 backdrop-blur-md flex items-center justify-center text-slate-400 hover:text-cyan-200 transition-colors"
+                  className={`h-10 w-10 rounded-xl ${iconBg} flex items-center justify-center ${iconColor} hover:text-cyan-500 transition-colors`}
                 >
                   <Twitter className="h-4 w-4" />
                 </motion.a>
@@ -168,7 +179,7 @@ export default function Footer({
                   whileHover={{ scale: 1.06, y: -2 }}
                   whileTap={{ scale: 0.96 }}
                   href={socialLinks.whatsapp}
-                  className="h-10 w-10 rounded-xl bg-[#0b1120]/40 backdrop-blur-md flex items-center justify-center text-slate-400 hover:text-cyan-200 transition-colors"
+                  className={`h-10 w-10 rounded-xl ${iconBg} flex items-center justify-center ${iconColor} hover:text-cyan-500 transition-colors`}
                 >
                   <MessageCircle className="h-4 w-4" />
                 </motion.a>
@@ -178,7 +189,7 @@ export default function Footer({
 
           {/* Navegação */}
           <motion.div variants={itemVariants} className="lg:col-span-2">
-            <h4 className="text-base font-semibold text-slate-100 mb-4">Navegação</h4>
+            <h4 className={`text-base font-semibold ${textColor} mb-4`}>Navegação</h4>
             <ul className="space-y-2.5">
               {navLinks.map((link, index) => (
                 <motion.li
@@ -189,7 +200,7 @@ export default function Footer({
                 >
                   <a
                     href={link.href}
-                    className="flex items-center gap-2 text-slate-400 hover:text-cyan-200 transition-colors group"
+                    className={`flex items-center gap-2 ${subTextColor} hover:text-cyan-500 transition-colors group`}
                   >
                     <span>{link.label}</span>
                     <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -201,7 +212,7 @@ export default function Footer({
 
           {/* Serviços */}
           <motion.div variants={itemVariants} className="lg:col-span-3">
-            <h4 className="text-base font-semibold text-slate-100 mb-4">Serviços</h4>
+            <h4 className={`text-base font-semibold ${textColor} mb-4`}>Serviços</h4>
             <ul className="space-y-2.5">
               {services.map((service, index) => (
                 <motion.li
@@ -212,7 +223,7 @@ export default function Footer({
                 >
                   <a
                     href={service.href}
-                    className="flex items-center gap-2 text-slate-400 hover:text-cyan-200 transition-colors group"
+                    className={`flex items-center gap-2 ${subTextColor} hover:text-cyan-500 transition-colors group`}
                   >
                     <span>{service.label}</span>
                     <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -224,7 +235,7 @@ export default function Footer({
 
           {/* Links rápidos + CTA */}
           <motion.div variants={itemVariants} className="lg:col-span-3">
-            <h4 className="text-base font-semibold text-slate-100 mb-4">Links Rápidos</h4>
+            <h4 className={`text-base font-semibold ${textColor} mb-4`}>Links Rápidos</h4>
             <ul className="space-y-2.5">
               {quickLinks.map((link, index) => (
                 <motion.li
@@ -235,7 +246,7 @@ export default function Footer({
                 >
                   <a
                     href={link.href}
-                    className="flex items-center gap-2 text-slate-400 hover:text-cyan-200 transition-colors group"
+                    className={`flex items-center gap-2 ${subTextColor} hover:text-cyan-500 transition-colors group`}
                   >
                     <span>{link.label}</span>
                     <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -243,8 +254,6 @@ export default function Footer({
                 </motion.li>
               ))}
             </ul>
-
-
           </motion.div>
         </motion.div>
 
@@ -254,23 +263,25 @@ export default function Footer({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.2 }}
-          className="mt-16 pt-8 border-t border-slate-800/50"
+          className={`mt-16 pt-8 border-t ${borderColor}`}
         >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
-            <div className="text-slate-500 text-sm">
+            <div className={`${subTextColor} text-sm`}>
               © {year} {brand}. Todos os direitos reservados.
             </div>
-            <div className="flex items-center gap-6 text-sm text-slate-500">
-              <a href="/privacy" className="hover:text-cyan-200 transition-colors">Política de Privacidade</a>
-              <a href="/terms" className="hover:text-cyan-200 transition-colors">Termos de Serviço</a>
-              <a href="/cookies" className="hover:text-cyan-200 transition-colors">Cookies</a>
+            <div className={`flex items-center gap-6 text-sm ${subTextColor}`}>
+              <a href="/privacy" className="hover:text-cyan-500 transition-colors">Política de Privacidade</a>
+              <a href="/terms" className="hover:text-cyan-500 transition-colors">Termos de Serviço</a>
+              <a href="/cookies" className="hover:text-cyan-500 transition-colors">Cookies</a>
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* Linha decorativa sutil */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-300/20 to-transparent" />
+      {/* Linha decorativa sutil (apenas no dark mode ou diferente no light?) */}
+      {!isLight && (
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-300/20 to-transparent" />
+      )}
     </footer>
   );
 }

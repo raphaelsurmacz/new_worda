@@ -11,8 +11,8 @@ export default function IndexAbout() {
       {/* ...outras sections */}
       <Navbar />
       <Section01 />
-<Section02 />
-      <Footer />
+      <Section02 />
+      <Footer variant="light" />
     </>
   );
 }

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export default function LandingHero() {
   return (
     <div className="min-h-screen w-full text-slate-100 relative overflow-hidden">
-      <main className="relative mx-auto flex max-w-6xl flex-col items-center px-6 pt-32 pb-20 sm:pt-40">
+      <main className="relative mx-auto flex max-w-6xl flex-col items-center px-6 pt-32 pb-16 sm:pt-40">
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

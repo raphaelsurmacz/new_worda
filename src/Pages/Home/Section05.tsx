@@ -66,7 +66,7 @@ export default function Section05({ items = teamMock }: { items?: TeamMember[] }
   // useEffect(() => setPage(0), [items.length]); // Optional protection
 
   return (
-    <section className="w-full py-20 text-slate-100 relative overflow-hidden">
+    <section className="w-full py-16 text-slate-100 relative overflow-hidden">
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Heading */}
         <motion.div

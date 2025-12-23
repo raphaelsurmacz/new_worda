@@ -41,7 +41,7 @@ export default function Section04() {
     };
 
     return (
-        <section className="w-full py-24 text-slate-100 relative overflow-hidden">
+        <section className="w-full py-16 text-slate-100 relative overflow-hidden">
             <div className="relative mx-auto max-w-7xl px-6">
                 {/* Header */}
                 <motion.div

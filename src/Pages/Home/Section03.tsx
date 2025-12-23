@@ -48,20 +48,11 @@ export default function Section03() {
 
   const iconVariants = {
     hidden: { scale: 0, rotate: -180 },
-    visible: {
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 15,
-        duration: 0.8,
-      },
-    },
+    visible: { scale: 1, rotate: 0, transition: { duration: 0.5, ease: "backOut" } },
   };
 
   return (
-    <section id="services" className="w-full py-28 text-slate-100 relative overflow-hidden">
+    <section id="services" className="w-full py-16 text-slate-100 relative overflow-hidden">
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Heading */}
         <motion.div
